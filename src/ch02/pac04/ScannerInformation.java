@@ -21,7 +21,5 @@ public class ScannerInformation {
 			System.out.println("전화번호 : " + strTel);
 			System.out.println("이메일 : " + strEmail);
 		}
-
 	}
-
 }
