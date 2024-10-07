@@ -63,8 +63,8 @@ public class OperatorPractice {
 		} else {
 			System.out.println("10%가 아닙니다.");
 		}
-		System.out.printf("Value1 : %20.18f, Value2 : %20.18f, (float)0.1 : %20.18f\n", value1, value2, (float) 0.1);
-		System.out.printf("(double)0.1 : %20.18f\n", (double) 0.1);
+		System.out.printf("Value1 : %.20f, Value2 : %.20f, (float)0.1 : %.20f\n", value1, value2, (float) 0.1);
+		System.out.printf("(double)0.1 : %.20f\n", (double) 0.1);
 
 		// Question 8
 		int lengthTop = 5;
