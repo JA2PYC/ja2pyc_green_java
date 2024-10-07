@@ -1,7 +1,5 @@
 package ch03.pac02;
 
-import java.util.Scanner;
-
 public class TestPractice {
 
 	public static void main(String[] args) {
@@ -9,21 +7,21 @@ public class TestPractice {
 		// Variable Test
 		// Qeustion 1
 		// 논리형
-		boolean booleanVar;
+		// boolean booleanVar;
 
 		// 정수형
-		byte byteVar; // 1byte
-		short shortVar; // 2byte
-		char charVar; // 2byte
-		int intVar; // 4byte
-		long longVar; // 8byte
+		// byte byteVar; // 1byte
+		// short shortVar; // 2byte
+		// char charVar; // 2byte
+		// int intVar; // 4byte
+		// long longVar; // 8byte
 
 		// 실수형
-		float floatVar; // 4byte
-		double doubleVar; // 8byte
+		// float floatVar; // 4byte
+		// double doubleVar; // 8byte
 
 		// Question 2
-		long regNo = 12345678901234L;
+		// long regNo = 12345678901234L;
 
 		// Question 3
 		// 리터럴
@@ -58,10 +56,10 @@ public class TestPractice {
 
 		// Question 9
 		// d.float f= l; e.i = ch;
-		byte b = 10;
-		char ch = 'A';
-		int i = 100;
-		long l = 1000L;
+		// byte b = 10;
+		// char ch = 'A';
+		// int i = 100;
+		// long l = 1000L;
 
 		// Question 10
 		// 0 ~ 65535

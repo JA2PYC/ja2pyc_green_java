@@ -115,7 +115,7 @@ public class LoopingPractice {
 				System.out.println("적절하지 않은 입력입니다. (1~4)를 입력해주세요.");
 			}
 		}
-
+		scanner.close();
 		System.out.println("프로그램 종료.");
 	}
 

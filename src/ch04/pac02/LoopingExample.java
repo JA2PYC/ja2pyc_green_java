@@ -41,9 +41,10 @@ public class LoopingExample {
 		int sumWithWhile = 0;
 		int iWithWhile = 0;
 		while (iWithWhile < 100) {
-			sum += iWithWhile + 1;
+			sumWithWhile += iWithWhile + 1;
 			iWithWhile++;
 		}
+		System.out.println("sumWithWhile : " + sumWithWhile);
 
 		// While Break
 		while (true) {
