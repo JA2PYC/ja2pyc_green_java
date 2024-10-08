@@ -38,6 +38,7 @@ public class LoopingPractice {
 		}
 
 		// Question 5
+		System.out.println("Question 5");
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				if (i >= j) {
@@ -58,8 +59,17 @@ public class LoopingPractice {
 			}
 			System.out.printf("%-4s\n", str);
 		}
+		
+		// Question 5 with String Method
+		System.out.println("Question 5 with String Method");
+		for (int i = 0; i < 4; i++) {
+			String str = "****";
+			str = str.substring(0, (i + 1));
+			System.out.printf("%-4s\n", str);
+		}
 
 		// Question 6
+		System.out.println("Question 6");
 		for (int i = 0; i < 4; i++) {
 			for (int j = 3; j >= 0; j--) {
 				if (i < j) {
@@ -83,6 +93,14 @@ public class LoopingPractice {
 			System.out.printf("%4s\n", str);
 		}
 
+		// Question 6 with String Method
+		System.out.println("Question 6 with String Method");
+		for (int i = 0; i < 4; i++) {
+			String str = "****";
+			str = str.substring(0, (i + 1));
+			System.out.printf("%4s\n", str);
+		}
+		
 		// Question 7
 		boolean run = true;
 		int balance = 0;
