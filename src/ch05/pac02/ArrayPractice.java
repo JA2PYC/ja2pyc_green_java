@@ -11,6 +11,7 @@ public class ArrayPractice {
 		int[] array;
 		// array = {1,2,3};
 		array = new int[] { 1, 2, 3 };
+		System.out.println("array : " + array);
 
 		// Question 2
 		int[] intEmpty = new int[3];
@@ -60,7 +61,7 @@ public class ArrayPractice {
 			System.out.println("1.학생수 | 2.점수입력 | 3.점수리스트 | 4.분석 | 5.종료");
 			System.out.println("--------------------------------------------------");
 			System.out.print("선택>");
-
+			
 			int selectNo = Integer.parseInt(scanner.nextLine());
 
 			if (selectNo == 1) {
@@ -79,7 +80,7 @@ public class ArrayPractice {
 					System.out.println("점수 " + (i + 1) + "번 : " + studentsScore[i]);
 				}
 			} else if (selectNo == 3) {
-				if (studentsScore.length == 0) {
+				if (studentsScore == null) {
 					System.out.println("저장된 점수가 없습니다.");
 					continue;
 				}
@@ -93,7 +94,7 @@ public class ArrayPractice {
 				}
 				System.out.println("점수 목록 : " + strScore);
 			} else if (selectNo == 4) {
-				if (studentsScore.length == 0) {
+				if (studentsScore == null) {
 					System.out.println("저장된 점수가 없습니다.");
 					continue;
 				}
@@ -118,7 +119,10 @@ public class ArrayPractice {
 				System.out.println("잘못된 입력입니다. 1~5를 입력해주세요.");
 			}
 		}
-		System.out.println("프로그램이 종료 되었습니다.");
+
+		if (run == false) {
+			System.out.println("프로그램이 종료 되었습니다.");
+		}
 
 	}
 
