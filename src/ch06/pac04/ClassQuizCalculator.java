@@ -1,5 +1,7 @@
 package ch06.pac04;
 
+import java.util.ArrayList;
+
 public class ClassQuizCalculator {
 
 	double getAdd(double x, double y) {
@@ -34,7 +36,7 @@ public class ClassQuizCalculator {
 		} else if (operator.equals("-")) {
 			result = x - y;
 		} else {
-			result = 0;
+			throw new IllegalArgumentException("Invalid Operator : " + operator);
 		}
 		return result;
 	}
@@ -46,9 +48,46 @@ public class ClassQuizCalculator {
 		} else if (operator.equals("/")) {
 			result = x / y;
 		} else {
-			result = 0;
+			throw new IllegalArgumentException("Invalid Operator : " + operator);
 		}
 		return result;
+	}
+
+	double formulaCalculator(String formula) {
+		boolean isCalculating = true;
+		while (isCalculating) {
+			// Check Formula
+			ArrayList<Character> digitList = new ArrayList<Character>();
+			ArrayList<Character> letterList = new ArrayList<Character>();
+			ArrayList<Character> operatorList = new ArrayList<Character>();
+			for (int i = 0; i < formula.length(); i++) {
+				char targetCh = formula.charAt(i);
+				if (Character.isDigit(targetCh)) {
+					digitList.add(targetCh);
+					System.out.println("isDigit : " + targetCh);
+				} else if (Character.isLetter(targetCh)) {
+					letterList.add(targetCh);
+					System.out.println("isLetter : " + targetCh);
+				} else {
+					operatorList.add(targetCh);
+					System.out.println("else : " + targetCh);
+				}
+			}
+			
+			// Delete Letter
+
+			// Set targetArr
+
+			// Calculate
+
+			System.out.println("formula : " + formula);
+			System.out.println("digitList : " + digitList);
+			System.out.println("letterList : " + letterList);
+			System.out.println("oepratorList : " + operatorList);
+			isCalculating = false;
+			break;
+		}
+		return 0.0;
 	}
 
 }

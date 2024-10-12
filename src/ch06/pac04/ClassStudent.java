@@ -15,7 +15,8 @@ public class ClassStudent {
 
 	float getAverage() {
 		int sumTotal = getTotal();
-		float avgResult = sumTotal / 3;
-		return avgResult;
+		float avgResult = (float) sumTotal / 3;
+		float roundedResult = (float) Math.round(avgResult * 100) / 100;
+		return roundedResult;
 	}
 }
