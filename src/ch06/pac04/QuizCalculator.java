@@ -98,17 +98,23 @@ public class QuizCalculator {
 
 		failCounter = 0;
 		while (true) {
+			if (failCounter > 2) {
+				failCounter = 0;
+				System.out.println("수식 계산에 실패했습니다.");
+				break;
+			}
 			System.out.println("계산식을 입력하세요.");
 			System.out.println("숫자와 연산자(+, -, *, /)의 계산이 가능합니다.");
 			System.out.print("입력>");
 
-			String formula = scanner.nextLine();
+			String userInput = scanner.nextLine();
 			ClassQuizCalculator newCalculator = new ClassQuizCalculator();
 			double calcResult;
 			try {
-				calcResult = newCalculator.formulaCalculator(formula);
+				calcResult = newCalculator.formulaCalculator(userInput);
 			} catch (Exception e) {
 				failCounter++;
+				System.out.println("Error : " + e);
 				continue;
 			}
 			
