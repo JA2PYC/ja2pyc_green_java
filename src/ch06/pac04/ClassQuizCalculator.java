@@ -47,16 +47,18 @@ public class ClassQuizCalculator {
 	}
 
 	private String calcFormula(String formula, String operator) throws Exception {
+		// Verify Operator
 		if (!operator.equals("+") && !operator.equals("-") && !operator.equals("*") && !operator.equals("/")) {
 			throw new Exception("Operator Error");
 		}
 
+		//Set Index
 		int targetIndex = formula.indexOf(operator);
-
 		int firstIndex = -1;
 		int secondIndex = targetIndex + 1;
 		int endIndex = formula.length();
 
+		// Set First Index
 		for (int i = targetIndex - 1; i >= 0; i--) {
 			char targetChar = formula.charAt(i);
 			if (!Character.isDigit(targetChar) && targetChar != '.') {
@@ -64,10 +66,10 @@ public class ClassQuizCalculator {
 				break;
 			}
 		}
-
 		if (firstIndex == -1)
 			firstIndex = 0;
 
+		// Set End Index
 		for (int i = targetIndex + 1; i < formula.length(); i++) {
 			char targetChar = formula.charAt(i);
 			if (!Character.isDigit(targetChar) && targetChar != '.') {
@@ -76,10 +78,12 @@ public class ClassQuizCalculator {
 			}
 		}
 
+		// Set Values
 		double beforeValue = Double.parseDouble(formula.substring(firstIndex, targetIndex));
 		double afterValue = Double.parseDouble(formula.substring(secondIndex, endIndex));
+		
+		// Calculate
 		double calcResult;
-
 		switch (operator) {
 		case "+":
 			calcResult = beforeValue + afterValue;
@@ -99,6 +103,7 @@ public class ClassQuizCalculator {
 			throw new Exception("Calculation Error");
 		}
 
+		// Set Calculated Formula
 		formula = formula.substring(0, firstIndex) + calcResult + formula.substring(endIndex);
 		return formula;
 	}
@@ -111,11 +116,13 @@ public class ClassQuizCalculator {
 		String formula = userInput.replaceAll("[^0-9+\\-*/().]", "");
 		System.out.println("formula : " + formula);
 
+		// Check Start or End with Operation
 		if (formula.startsWith("+") || formula.startsWith("-") || formula.startsWith("*") || formula.startsWith("/")
 				|| formula.endsWith("+") || formula.endsWith("-") || formula.endsWith("*") || formula.endsWith("/")) {
 			throw new Exception("Formula Operation Error");
 		}
 
+		// Check Duplicated Operation
 		for (int i = 0; i < formula.length() - 1; i++) {
 			char currentChar = formula.charAt(i);
 			char nextChar = formula.charAt(i + 1);
@@ -126,6 +133,7 @@ public class ClassQuizCalculator {
 			}
 		}
 
+		// Preferred Operator
 		while (formula.contains("(")) {
 			int openIndex = formula.lastIndexOf("(");
 			int closeIndex = formula.indexOf(")", openIndex);
