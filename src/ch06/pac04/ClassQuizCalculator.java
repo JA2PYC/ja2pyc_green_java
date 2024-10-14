@@ -1,7 +1,5 @@
 package ch06.pac04;
 
-import java.util.ArrayList;
-
 public class ClassQuizCalculator {
 
 	double getAdd(double x, double y) {
@@ -10,12 +8,7 @@ public class ClassQuizCalculator {
 	}
 
 	double getSub(double x, double y) {
-		double result;
-		if (x >= y) {
-			result = x - y;
-		} else {
-			result = y - x;
-		}
+		double result = x - y;
 		return result;
 	}
 
@@ -53,99 +46,111 @@ public class ClassQuizCalculator {
 		return result;
 	}
 
-	double formulaCalculator(String userInput) {
-		boolean isCalculating = true;
-		while (isCalculating) {
-			// Check Formula
-			ArrayList<Character> digitList = new ArrayList<Character>();
-			ArrayList<Character> letterList = new ArrayList<Character>();
-			ArrayList<Character> operatorList = new ArrayList<Character>();
-
-			// Delete Letter
-			boolean isDigit = false;
-			String formula = "";
-			String separationIndex = "";
-			int operationCounter = 0;
-			for (int i = 0; i < userInput.length(); i++) {
-				char targetCh = userInput.charAt(i);
-				if (Character.isDigit(targetCh)) {
-					if (isDigit == false) {
-						separationIndex += (i + ",");
-						isDigit = true;
-					}
-					formula += targetCh;
-					digitList.add(targetCh);
-				} else if (Character.isLetter(targetCh)) {
-					// Skip Letter
-					letterList.add(targetCh);
-				} else {
-					if (targetCh == '+' || targetCh == '-' || targetCh == '*' || targetCh == '/') {
-						if (isDigit == true) {
-							separationIndex += (i + ",");
-							isDigit = false;
-						} else {
-							System.out.println("연산자는 연속으로 올 수 없습니다.");
-							isCalculating = false;
-							break;
-						}
-						operationCounter++;
-						formula += targetCh;
-						operatorList.add(targetCh);
-					}
-				}
-			}
-
-			// Set Parameter
-			String[] separationIndexArray = separationIndex.split(",");
-			for (int i = 0; i < separationIndexArray.length; i++) {
-				System.out.println("separationIndexArray : " + separationIndexArray[i]);
-			}
-
-			// Calculate
-			while (formula.indexOf("*") >= 0) {
-				System.out.println("indexOf : " + formula.indexOf("*"));
-				break;
-			}
-			while (formula.indexOf("/") >= 0) {
-				System.out.println("indexOf : " + formula.indexOf("/"));
-				break;
-			}
-			while (formula.indexOf("+") >= 0) {
-				int targetIndex = formula.indexOf("+");
-				System.out.println("targetIndex : " + targetIndex);
-				int operationIndex = separationIndex.indexOf(String.valueOf(targetIndex));
-				System.out.println("operationIndex : " + operationIndex);
-
-				String beforeOperation = formula.substring(0, targetIndex);
-				System.out.println("beforeOperation : " + beforeOperation);
-				String nextOperation = formula.substring(targetIndex + 1);
-				System.out.println("nextOperation : " + nextOperation);
-				String operationString = formula.substring(operationIndex, operationIndex + 1);
-				System.out.println("operationString : " + operationString);
-
-				int calcResult = Integer.parseInt(beforeOperation) + Integer.parseInt(nextOperation);
-				System.out.println("calcResult : " + calcResult);
-
-				break;
-			}
-			while (formula.indexOf("-") >= 0) {
-				System.out.println("indexOf : " + formula.indexOf("-"));
-				break;
-			}
-
-			while (operationCounter > 0) {
-				operationCounter--;
-				break;
-			}
-
-			System.out.println("formula : " + formula);
-			System.out.println("separationIndex : " + separationIndex);
-			System.out.println("digitList : " + digitList);
-			System.out.println("oepratorList : " + operatorList);
-			isCalculating = false;
-			break;
+	private String calcFormula(String formula, String operator) throws Exception {
+		if (!operator.equals("+") && !operator.equals("-") && !operator.equals("*") && !operator.equals("/")) {
+			throw new Exception("Operator Error");
 		}
-		return 0.0;
+
+		int targetIndex = formula.indexOf(operator);
+
+		int firstIndex = -1;
+		int secondIndex = targetIndex + 1;
+		int endIndex = formula.length();
+
+		for (int i = targetIndex - 1; i >= 0; i--) {
+			char targetChar = formula.charAt(i);
+			if (!Character.isDigit(targetChar) && targetChar != '.') {
+				firstIndex = i + 1;
+				break;
+			}
+		}
+
+		if (firstIndex == -1)
+			firstIndex = 0;
+
+		for (int i = targetIndex + 1; i < formula.length(); i++) {
+			char targetChar = formula.charAt(i);
+			if (!Character.isDigit(targetChar) && targetChar != '.') {
+				endIndex = i;
+				break;
+			}
+		}
+
+		double beforeValue = Double.parseDouble(formula.substring(firstIndex, targetIndex));
+		double afterValue = Double.parseDouble(formula.substring(secondIndex, endIndex));
+		double calcResult;
+
+		switch (operator) {
+		case "+":
+			calcResult = beforeValue + afterValue;
+			break;
+		case "-":
+			calcResult = beforeValue - afterValue;
+			break;
+		case "*":
+			calcResult = beforeValue * afterValue;
+			break;
+		case "/":
+			if (afterValue == 0)
+				throw new Exception("Divide by Zero");
+			calcResult = beforeValue / afterValue;
+			break;
+		default:
+			throw new Exception("Calculation Error");
+		}
+
+		formula = formula.substring(0, firstIndex) + calcResult + formula.substring(endIndex);
+		return formula;
+	}
+
+	double formulaCalculator(String userInput) throws Exception {
+		// Delete Letter
+		if (userInput.isEmpty()) {
+			throw new Exception("Empty Formula");
+		}
+		String formula = userInput.replaceAll("[^0-9+\\-*/.]", "");
+		System.out.println("formula : " + formula);
+
+		if (formula.startsWith("+") || formula.startsWith("-") || formula.startsWith("*") || formula.startsWith("/")
+				|| formula.endsWith("+") || formula.endsWith("-") || formula.endsWith("*") || formula.endsWith("/")) {
+			throw new Exception("Formula Operation Error");
+		}
+
+		for (int i = 0; i < formula.length() - 1; i++) {
+			char currentChar = formula.charAt(i);
+			char nextChar = formula.charAt(i + 1);
+
+			if ((currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/')
+					&& (nextChar == '+' || nextChar == '-' || nextChar == '*' || nextChar == '/')) {
+				throw new Exception("Formula Operation Error");
+			}
+		}
+
+		// Calculate
+		while (formula.indexOf("*") >= 0 || formula.indexOf("/") >= 0) {
+			int multipleIndex = formula.indexOf("*");
+			int divideIndex = formula.indexOf("/");
+			if (divideIndex == -1 || (multipleIndex != -1 && multipleIndex < divideIndex)) {
+				formula = calcFormula(formula, "*");
+			} else {
+				formula = calcFormula(formula, "/");
+			}
+			System.out.println("formula : " + formula);
+		}
+		while (formula.indexOf("+") >= 0 || formula.indexOf("-") >= 0) {
+			int plusIndex = formula.indexOf("+");
+			int minusIndex = formula.indexOf("-");
+			if (minusIndex == -1 || (plusIndex != -1 && plusIndex < minusIndex)) {
+				formula = calcFormula(formula, "+");
+			} else {
+				formula = calcFormula(formula, "-");
+			}
+			System.out.println("formula : " + formula);
+		}
+
+		// Return Result
+		System.out.println("formula : " + formula);
+		return Double.parseDouble(formula);
 	}
 
 }

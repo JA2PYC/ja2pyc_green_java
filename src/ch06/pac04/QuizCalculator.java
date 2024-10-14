@@ -117,7 +117,7 @@ public class QuizCalculator {
 				System.out.println("Error : " + e);
 				continue;
 			}
-			
+
 			failCounter = 0;
 			System.out.println("calcResult : " + calcResult);
 
@@ -126,10 +126,10 @@ public class QuizCalculator {
 			if (inputContinue.equalsIgnoreCase("Y") || inputContinue.equalsIgnoreCase("YES")) {
 				continue;
 			}
-			
+
 			break;
 		}
-		
+
 		scanner.close();
 		System.out.println("---------- 수식 계산기를 종료합니다. ----------");
 	}
