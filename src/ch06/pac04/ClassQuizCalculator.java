@@ -108,7 +108,7 @@ public class ClassQuizCalculator {
 		if (userInput.isEmpty()) {
 			throw new Exception("Empty Formula");
 		}
-		String formula = userInput.replaceAll("[^0-9+\\-*/.]", "");
+		String formula = userInput.replaceAll("[^0-9+\\-*/().]", "");
 		System.out.println("formula : " + formula);
 
 		if (formula.startsWith("+") || formula.startsWith("-") || formula.startsWith("*") || formula.startsWith("/")
@@ -124,6 +124,18 @@ public class ClassQuizCalculator {
 					&& (nextChar == '+' || nextChar == '-' || nextChar == '*' || nextChar == '/')) {
 				throw new Exception("Formula Operation Error");
 			}
+		}
+
+		while (formula.contains("(")) {
+			int openIndex = formula.lastIndexOf("(");
+			int closeIndex = formula.indexOf(")", openIndex);
+			if (closeIndex == -1)
+				throw new Exception("Formula Error");
+
+			String subFormula = formula.substring(openIndex + 1, closeIndex);
+			double subResult = formulaCalculator(subFormula);
+
+			formula = formula.substring(0, openIndex) + subResult + formula.substring(closeIndex + 1);
 		}
 
 		// Calculate
