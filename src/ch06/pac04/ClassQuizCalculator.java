@@ -61,6 +61,7 @@ public class ClassQuizCalculator {
 			ArrayList<Character> letterList = new ArrayList<Character>();
 			ArrayList<Character> operatorList = new ArrayList<Character>();
 
+			// Delete Letter
 			boolean isDigit = false;
 			String formula = "";
 			String separationIndex = "";
@@ -94,32 +95,47 @@ public class ClassQuizCalculator {
 				}
 			}
 
-			// Delete Letter
-
 			// Set Parameter
 			String[] separationIndexArray = separationIndex.split(",");
-			System.out.println("separationIndexArray : " + separationIndexArray.toString());
+			for (int i = 0; i < separationIndexArray.length; i++) {
+				System.out.println("separationIndexArray : " + separationIndexArray[i]);
+			}
 
 			// Calculate
+			while (formula.indexOf("*") >= 0) {
+				System.out.println("indexOf : " + formula.indexOf("*"));
+				break;
+			}
+			while (formula.indexOf("/") >= 0) {
+				System.out.println("indexOf : " + formula.indexOf("/"));
+				break;
+			}
+			while (formula.indexOf("+") >= 0) {
+				int targetIndex = formula.indexOf("+");
+				System.out.println("targetIndex : " + targetIndex);
+				int operationIndex = separationIndex.indexOf(String.valueOf(targetIndex));
+				System.out.println("operationIndex : " + operationIndex);
+
+				String beforeOperation = formula.substring(0, targetIndex);
+				System.out.println("beforeOperation : " + beforeOperation);
+				String nextOperation = formula.substring(targetIndex + 1);
+				System.out.println("nextOperation : " + nextOperation);
+				String operationString = formula.substring(operationIndex, operationIndex + 1);
+				System.out.println("operationString : " + operationString);
+
+				int calcResult = Integer.parseInt(beforeOperation) + Integer.parseInt(nextOperation);
+				System.out.println("calcResult : " + calcResult);
+
+				break;
+			}
+			while (formula.indexOf("-") >= 0) {
+				System.out.println("indexOf : " + formula.indexOf("-"));
+				break;
+			}
+
 			while (operationCounter > 0) {
-				while (formula.indexOf("*") >= 0) {
-					System.out.println("indexOf : " + formula.indexOf("*"));
-					break;
-				}
-				while (formula.indexOf("/") >= 0) {
-					System.out.println("indexOf : " + formula.indexOf("/"));
-					break;
-				}
-				while (formula.indexOf("+") >= 0) {
-					System.out.println("indexOf : " + formula.indexOf("+"));
-					break;
-				}
-				while (formula.indexOf("-") >= 0) {
-					System.out.println("indexOf : " + formula.indexOf("-"));
-					break;
-				}
-				
 				operationCounter--;
+				break;
 			}
 
 			System.out.println("formula : " + formula);

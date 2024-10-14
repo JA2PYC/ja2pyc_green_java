@@ -5,8 +5,12 @@ public class ClassCar {
 	String model;
 	int speed;
 	int maxSpeed = 100;
-
+	
 	// Constructor
+	public ClassCar() {
+		
+	}
+	
 	ClassCar(String model) {
 		this.model = model;
 	}
