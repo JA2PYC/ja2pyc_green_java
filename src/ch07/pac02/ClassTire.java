@@ -7,6 +7,9 @@ public class ClassTire {
 	public String location;
 
 	// Constructor
+	ClassTire() {
+		
+	}
 	public ClassTire(String location, int maxRotation) {
 		this.location = location;
 		this.maxRotation = maxRotation;
@@ -23,5 +26,9 @@ public class ClassTire {
 			return false;
 		}
 			
+	}
+	
+	void run() {
+		System.out.println("일반 타이어가 굴러갑니다.");
 	}
 }

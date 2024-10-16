@@ -6,10 +6,11 @@ public class ClassChild extends ClassParent {
 		this("ClassChild");
 		System.out.println("ClassChild");
 	}
-	
-	ClassChild(String str){
+
+	ClassChild(String str) {
 		System.out.println("ClassChild(str)" + str);
 	}
+
 	@Override
 	public void method2() {
 		System.out.println("Child method2()");
