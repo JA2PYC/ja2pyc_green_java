@@ -53,6 +53,33 @@ public class InterfacePolymorphismExample {
 		System.out.println("-------------------- Interface Casting --------------------");
 		InterfaceVehicle newInterfaceVehicle = newInterfaceCar;
 		newInterfaceVehicle.run();
+
+		// ClassSonata
+		System.out.println("-------------------- Class Extends --------------------");
+		ClassSonata newSonata = new ClassSonata();
+		newSonata.turnOn();
+		newSonata.run();
+		newSonata.roll();
+		newSonata.turnOff();
+
+		// Casting Extended Class
+		System.out.println("-------------------- Casting Extended Class --------------------");
+		InterfaceCar newInterfaceCarSonata = newSonata;
+		newInterfaceCarSonata.turnOn();
+		newInterfaceCarSonata.roll();
+		newInterfaceCarSonata.run();
+		newInterfaceCarSonata.turnOff();
+		
+		// Casting Interface
+		System.out.println("-------------------- Casting Interface Extended Class --------------------");
+		InterfaceVehicle newInterfaceVehicleSonata = newSonata;
+		newInterfaceVehicleSonata.run();
+		
+		// Casting Interface
+		System.out.println("-------------------- Casting Interface Extended Class --------------------");
+		InterfaceTire newInterfaceTireSonata = newSonata;
+		newInterfaceTireSonata.roll();
+		
 	}
 
 }
