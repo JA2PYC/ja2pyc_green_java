@@ -1,18 +1,23 @@
 package ch08.pac01;
 
-public class ClassAudio implements InterfaceRemoteControl{
-	private int volume;
-	
+public class ClassAudio implements InterfaceRemoteControl {
+	private int volume = 5;
+
 	@Override
 	public void turnOn() {
 		System.out.println("Audio를 켭니다.");
 	}
-	
+
 	@Override
 	public void turnOff() {
 		System.out.println("Audio를 끕니다.");
 	}
-	
+
+	@Override
+	public int getVolume() {
+		return this.volume;
+	}
+
 	@Override
 	public void setVolume(int volume) {
 		if (volume > InterfaceRemoteControl.MAX_VOLUME) {
@@ -22,8 +27,8 @@ public class ClassAudio implements InterfaceRemoteControl{
 		} else {
 			this.volume = volume;
 		}
-		
-		System.out.println("현재 Audio 볼륨 : " + this.volume);	
+
+		System.out.println("현재 Audio 볼륨 : " + this.volume);
 	}
 
 }

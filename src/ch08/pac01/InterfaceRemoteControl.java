@@ -6,11 +6,13 @@ public interface InterfaceRemoteControl {
 	int MIN_VOLUME = 0;
 	// Must Initialize Filed
 	// int CURRENT_VOLUME;
-	
+
 	// Abstract Method
 	public abstract void turnOn();
 
 	public void turnOff();
+
+	int getVolume();
 
 	void setVolume(int volume);
 }

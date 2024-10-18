@@ -2,7 +2,7 @@ package ch08.pac01;
 
 public class ClassTelevision implements InterfaceRemoteControl {
 	// Field
-	private int volume;
+	private int volume = 5;
 
 	// Method
 	@Override
@@ -16,6 +16,11 @@ public class ClassTelevision implements InterfaceRemoteControl {
 	}
 
 	@Override
+	public int getVolume() {
+		return this.volume;
+	}
+
+	@Override
 	public void setVolume(int volume) {
 		if (volume > InterfaceRemoteControl.MAX_VOLUME) {
 			this.volume = InterfaceRemoteControl.MAX_VOLUME;
@@ -24,7 +29,7 @@ public class ClassTelevision implements InterfaceRemoteControl {
 		} else {
 			this.volume = volume;
 		}
-		
+
 		System.out.println("현재 TV 볼륨 : " + this.volume);
 	}
 }
