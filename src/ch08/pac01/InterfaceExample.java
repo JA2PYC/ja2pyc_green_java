@@ -18,8 +18,8 @@ public class InterfaceExample {
 		ClassTelevision newTelevision = new ClassTelevision();
 		newTelevision.turnOn();
 		
-		// Use Interface
-		System.out.println("-------------------- Use Interface --------------------");
+		// Interface
+		System.out.println("-------------------- Interface --------------------");
 		InterfaceRemoteControl newInterface = new ClassAudio();
 		newInterface.turnOn();
 		newInterface.turnOff();
@@ -34,7 +34,21 @@ public class InterfaceExample {
 		InterfaceSearchable newSearchable = newSmartTelevision;
 		newSearchable.search("JAVA");
 		
+		// Use Interface
+		System.out.println("-------------------- Class My Interface --------------------");
+		ClassMyInterface newMyInterface = new ClassMyInterface();
+		newMyInterface.remoteControlTelevision.turnOn();
+		newMyInterface.remoteControlTelevision.setVolume(1);
 		
+		System.out.println("--------------------------------------------------");
+		ClassMyInterface myInterfaceAudio = new ClassMyInterface(new ClassAudio());
+		myInterfaceAudio.remoteControl.turnOff();
+		
+		System.out.println("--------------------------------------------------");
+		newMyInterface.turnOnAudio();
+		
+		System.out.println("--------------------------------------------------");
+		newMyInterface.turnOnRemoteControl(new ClassSmartTelevision());
 	}
 
 }

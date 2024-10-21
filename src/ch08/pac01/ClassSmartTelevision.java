@@ -1,7 +1,7 @@
 package ch08.pac01;
 
 public class ClassSmartTelevision implements InterfaceRemoteControl, InterfaceSearchable {
-	private int volume;
+	private int volume = 5;
 
 	@Override
 	public void turnOn() {
@@ -11,6 +11,11 @@ public class ClassSmartTelevision implements InterfaceRemoteControl, InterfaceSe
 	@Override
 	public void turnOff() {
 		System.out.println("스마트 TV 전원을 끕니다.");
+	}
+
+	@Override
+	public int getVolume() {
+		return this.volume;
 	}
 
 	@Override
