@@ -19,13 +19,17 @@ public class NestedClassExample {
 		System.out.println("-------------------- Class Nested --------------------");
 		ClassOutter.ClassNested newNested = newOutter.new ClassNested(1);
 		newNested.methodNested();
+		newNested.methodNestedOutterField();
+		newNested.methodNestedOutterMethod();
 		
 		System.out.println("-------------------- Class Nested Static --------------------");
 		ClassOutter.ClassNestedStatic newNestedStatic = new ClassOutter.ClassNestedStatic(1);
 		newNestedStatic.methodNestedStatic();
+		newNestedStatic.methodNestedStaticOutterField();
+		newNestedStatic.methodNestedStaticOutterMethod();
 		
 		System.out.println("-------------------- Class Local --------------------");
-		newOutter.methodLocal();
+		newOutter.methodLocal(10);
 	}
 
 }

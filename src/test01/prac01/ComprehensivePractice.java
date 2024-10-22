@@ -3,6 +3,9 @@ package test01.prac01;
 // Scanner Package
 import java.util.Scanner;
 
+// Arrays Package
+import java.util.Arrays;
+
 // Set Package
 import java.util.List;
 import java.util.ArrayList;
@@ -11,6 +14,9 @@ public class ComprehensivePractice {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		// Set Scanner
+		Scanner scanner = new Scanner(System.in);
 
 		// Practice 1
 		System.out.println("-------------------- Practice 1 --------------------");
@@ -53,26 +59,50 @@ public class ComprehensivePractice {
 
 		// Practice 4
 		System.out.println("-------------------- Practice 4 --------------------");
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("입력>");
-		String divisorInput = scanner.nextLine();
-
-		List<Integer> divisorList = new ArrayList<>();
 		try {
+			System.out.print("약수 확인기 입력>");
+			String divisorInput = scanner.nextLine();
+
+			List<Integer> divisorList = new ArrayList<>();
+
 			int divisorNumber = Integer.parseInt(divisorInput);
 			for (int i = 1; i <= divisorNumber; i++) {
 				if (divisorNumber % i == 0 && !divisorList.contains(i)) {
 					divisorList.add(i);
 				}
 			}
+
+			System.out.println(divisorList);
+			System.out.println("약수의 개수는 " + divisorList.size() + "개 입니다.");
 		} catch (Exception e) {
-			System.out.println("정수를 입력해주세요." +e);
+			System.out.println("정수를 입력해주세요." + e);
 		}
 
-		System.out.println(divisorList);
-		System.out.println("약수의 개수는 " + divisorList.size() + "개 입니다.");
+		// Practice 5
+		System.out.println("-------------------- Practice 5 --------------------");
 
-		
+		try {
+			System.out.print("홀수 짝수 확인기 입력>");
+			String oddEvenInput = scanner.nextLine();
+
+			int oddCounter = 0;
+			int evenCounter = 0;
+			String[] oddEvenArr = oddEvenInput.split(",");
+
+			for (int i = 0; i < oddEvenArr.length; i++) {
+				if (Integer.parseInt(oddEvenArr[i]) % 2 != 0) {
+					oddCounter++;
+				} else {
+					evenCounter++;
+				}
+			}
+
+			System.out.println(Arrays.toString(oddEvenArr));
+			System.out.println("홀수는 " + oddCounter + "개, 짝수는 " + evenCounter + "개 입니다.");
+		} catch (Exception e) {
+			System.out.println("홀수 짝수 확인기 예외가 발생했습니다.");
+		}
+
 		scanner.close();
 		System.out.println("-------------------- End --------------------");
 
